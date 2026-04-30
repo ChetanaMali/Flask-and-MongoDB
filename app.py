@@ -5,9 +5,10 @@ app = Flask(__name__)
 def home():
     return 'This is a simple Flask application:)'
 
-@app.route('/about')
-def about():
-    return 'this is a about page:)'
+@app.route('/api/<name>')
+def api(name):
+    result = 'hello this is ' + name
+    return result
 
 if __name__ == '__main__':
     app.run(debug=True)
