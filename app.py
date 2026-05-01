@@ -29,5 +29,17 @@ def login_page():
     login_data = dict(request.form)
     collection.insert_one(login_data) # insert the login data into the MongoDB collection
     return 'data posted successfully'
+
+@app.route('/view')
+def view_data():
+    data = collection.find() # retrieve all documents from the MongoDB collection
+    data = list(data) # convert the cursor object to a list of documents
+    for item in data:
+        print(item) 
+        del item['_id'] # remove the '_id' field from each document
+    data = {
+        'data' : data
+    }
+    return data
 if __name__ == '__main__':
     app.run(port = 8080, debug=True)
