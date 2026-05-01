@@ -1,14 +1,17 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
+from datetime import date
+
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'This is a simple Flask application:)'
+    return render_template('index.html', today=date.today())
 
-@app.route('/add/<a>/<b>')
-def add(a,b):
-    result = int(a) + int(b)
-    return str(result)
+@app.route('/date')
+def get_date():
+    today = date.today()
+    print(today)
+    return str(today)
 
 @app.route('/api')
 def api():
