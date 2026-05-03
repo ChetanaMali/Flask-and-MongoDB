@@ -32,8 +32,8 @@ def login_page():
     collection.insert_one(login_data) # insert the login data into the MongoDB collection
     return 'data posted successfully'
 
-@app.route('/view')
-def view_data():
+@app.route('/api')
+def api():
     data = collection.find() # retrieve all documents from the MongoDB collection
     data = list(data) # convert the cursor object to a list of documents
     for item in data:
